@@ -32,7 +32,7 @@ module ov2640 (
     output new_pixel,
     output [15:0] pixel
   );
-
+//aleja
   assign rst_cm = 1'b1; // active low
 
   // This is used to drive the camera clock
@@ -86,7 +86,7 @@ module ov2640 (
   wire href_fifo, vsync_fifo;
   wire [7:0] data_fifo;
   wire empty;
-
+//rafael
   camera_fifo camera_fifo (
     .rst(rst), // input rst
     .wr_clk(pclk), // input wr_clk
@@ -147,6 +147,7 @@ module ov2640 (
         if (&cam_dly_q) //maxed
           state_d = PROG_CAMERA;
       end
+        //nestor
       PROG_CAMERA: begin
         if (!busy) begin
           if (rom_addr_q != REG_COUNT) begin
