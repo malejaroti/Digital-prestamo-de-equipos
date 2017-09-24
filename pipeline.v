@@ -1,3 +1,7 @@
+//The pipeline module you see being used all over the place is simply a parameterizable module 
+//that consists of a bunch of flip-flops chained together. It will simply delay the data by LENGTH 
+//number of clock cycles. This is useful when you have some data you want to keep paired up with other 
+//data that is being processed.
 module pipeline #(
   parameter LENGTH = 1,
   parameter WIDTH = 1
