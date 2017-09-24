@@ -48,7 +48,7 @@ module color_threshold (
       .in_valid(new_pixel_in),
       .out_valid(new_pixel)
     );
-
+//Line 52 is where you would change the values if you wanted to track a different color.
   assign pixel = (h < 5 || h > 245) && s > 115 && s < 210 && v > 30;
 
 endmodule
