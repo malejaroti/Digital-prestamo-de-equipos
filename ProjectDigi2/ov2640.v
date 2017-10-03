@@ -3,28 +3,17 @@ module ov2640 (
     input rst,
     input cam_clk,
 
-    // SCCB (Serial Camera Controlled Bus) interface
-    output scl, // serial bus clock signal
-    inout sda, // Serial bus data signal
+    // SCCB interface
+    output scl,
+    inout sda,
 
     // Main interface
-    output xclk, // probable system clock input
-    input pclk, //pixel clock output (dft input)
-    input href, //horizontal reference output (A1) (PIN9)
-    input vsync, // vertical sync output (B3) (PIN7)
-    input [7:0] data, 
-    
-    //DATA0 PIN24
-    //DATA1 PIN23
-    //DATA2 PIN19
-    //DATA3 PIN21
-    //DATA4 PIN22
-    //DATA5 PIN20
-    //DATA6 PIN18
-    //DATA7 PIN16
-    //DATA8 PIN14
-    //DATA9 PIN12
-      output rst_cm,
+    output xclk,
+    input pclk,
+    input href,
+    input vsync,
+    input [7:0] data,
+    output rst_cm,
 
     // Data output
     output end_frame,
@@ -32,7 +21,7 @@ module ov2640 (
     output new_pixel,
     output [15:0] pixel
   );
-//aleja
+
   assign rst_cm = 1'b1; // active low
 
   // This is used to drive the camera clock
@@ -86,7 +75,7 @@ module ov2640 (
   wire href_fifo, vsync_fifo;
   wire [7:0] data_fifo;
   wire empty;
-//rafael
+
   camera_fifo camera_fifo (
     .rst(rst), // input rst
     .wr_clk(pclk), // input wr_clk
@@ -147,7 +136,6 @@ module ov2640 (
         if (&cam_dly_q) //maxed
           state_d = PROG_CAMERA;
       end
-        //nestor
       PROG_CAMERA: begin
         if (!busy) begin
           if (rom_addr_q != REG_COUNT) begin
